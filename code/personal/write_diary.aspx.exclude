@@ -1,0 +1,204 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="write_diary.aspx.cs" Inherits="write_diary" %>
+
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <link href="../style/css.css" rel="stylesheet" type="text/css" />
+    <link href="../style/other.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-1.4.1.js" type="text/javascript"></script>
+    <%--<link href="../ckeditor/sample.css" rel="stylesheet" type="text/css" />--%>
+    <%--<link href="../ckeditor/contents.css" rel="stylesheet" type="text/css" />--%>
+    <title>日记|大学生考研日记|大学生相互鼓励共同奋斗的平台|双乐科技考研日记|考研日记点滴记录您奋斗过的每一天|共享科技乐享生活</title>
+    <script type="text/javascript" language="javascript">
+        function checkform() {
+            if (document.form1.title1.value == "") {
+                alert("请输入标题");
+                return false;
+            }
+            if (document.form1.CKEditor.value == "") {
+                alert("请输入内容");
+                return false;
+            }
+        }  
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server" onsubmit="return checkform();">
+    <div id="header">
+        <div id="top">
+            <span></span>
+            <div class="rtop">
+                <div class="login" id="getIn">
+                    <ul>
+                        <li class="laber">用户名：</li>
+                        <li class="inpu">
+                            <input name="username" type="text" id="username" runat="server" accesskey="l" tabindex="1"
+                                size="12" /></li>
+                        <li class="laber">密码：</li>
+                        <li class="inpu">
+                            <input name="secret" type="password" id="secret" size="12" runat='server' /></li>
+                        <li class="button">
+                            <asp:Button ID="Button1" runat="server" Text="登录" OnClick="Unnamed1_Click" /></li>
+                        <li><a href="registered.aspx">注册!</a></li>
+                        <li><a href="getback.aspx">找回？</a></li>
+                    </ul>
+                </div>
+                <div class="login" id="getedIn">
+                    <ul>
+                        <li class="laber">用户名：</li>
+                        <li class="inpu" id="aa"><a href="user.aspx?id=<%= Session["userName"].ToString() %>">
+                            <%= Session["userName"].ToString() %></a> </li>
+                        <li class="inpu"><a href="../personal/user.aspx?id=<%= Session["userName"].ToString() %>">
+                            <%= Session["userName"].ToString() %></a></li>
+                        <li class="inpu"><a href="user.aspx?id=<%= Session["userName"].ToString() %>">个人中心</a></li>
+                        <li>
+                            <asp:LinkButton ID="LinkButton_logout" runat="server" OnCommand="LinkButton_logout_Command">退出</asp:LinkButton></li>
+                    </ul>
+                </div>
+                <div class="word">
+                    <marquee scrollamount="2">这里写的不是一个故事，而是我和某一群人已经失去的时间!</marquee>
+                </div>
+            </div>
+        </div>
+        <div id="nav">
+            <ul>
+                <li><a href="../index.aspx">首页</a><span></span></li>
+                <li><a href="../diary/newdiary.aspx">最新日记</a><span></span></li>
+                <li><a href="../diary/motdiary.aspx">励志日记</a><span></span></li>
+                <li><a href="../diary/feeldiary.aspx">感情日记</a><span></span></li>
+                <li><a href="../diary/playup.aspx">奋斗日记</a><span></span></li>
+                <li><a href="../news/sugreading.aspx">推荐阅读</a><span></span></li>
+                <li><a href="personal.aspx">个人中心</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--头部结束-->
+    <div id="banner">
+    </div>
+    <!--banner结束-->
+    <div class="main">
+        <div class="pmainr">
+            <dl class="rjdl">
+                <dt class="lx">
+                    <ul>
+                        <li><a href="../index.aspx">本站首页>></a></li>
+                        <li><a href="personal.aspx">个人中心>></a></li>
+                        <li><a href="write.aspx">写日记</a></li>
+                    </ul>
+                </dt>
+                <dd>
+                    <table width="685" border="0" class="tablemain">
+                        <tr>
+                            <td class="write_diary_left_td">
+                                标题：
+                            </td>
+                            <td>
+                                <input name="title1" type="text" id="title1" runat="server" style="width: 260px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="write_diary_left_td">
+                                类别:
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="select" runat="server" Style="float: left;">
+                                    <asp:ListItem Value="励志日记" Selected="True">励志日记</asp:ListItem>
+                                    <asp:ListItem Value="感情日记">感情日记</asp:ListItem>
+                                    <asp:ListItem Value="奋斗日记">奋斗日记</asp:ListItem>
+                                    <asp:ListItem Value="其他">其他</asp:ListItem>
+                                </asp:DropDownList>
+                                <span id="editor_toolbar_btn_container" style="margin: 0 0 0 10px; float: left;">
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="write_diary_left_td">
+                                内容：
+                            </td>
+                            <td>
+                                <CKEditor:CKEditorControl ID="CKEditor" runat="server" Height="100px" Width="600px"
+                                    BasePath="../ckeditor">
+                                </CKEditor:CKEditorControl>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td class="write_diary_button">
+                                <ul>
+                                    <li>
+                                        <asp:Button ID="btreset" runat="server" Text="清空日记" OnClick="btreset_Click" /></li>
+                                    <li>
+                                        <asp:Button ID="bthide" runat="server" Text="隐藏日记" OnClick="bthide_Click" /></li>
+                                    <li>
+                                        <asp:Button ID="btpublic" runat="server" Text="发表日记" OnClick="btpublic_Click" /></li>
+                                    <li>
+                                        <asp:Button ID="btSavedraft" runat="server" Text="保存草稿" OnClick="btSavedraft_Click" /></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </dd>
+            </dl>
+        </div>
+        <div class="pmainl">
+            <dl class="rjdl">
+                <dt class="lx"><span>个人中心</span></dt>
+                <dd>
+                    <ul>
+                        <p>
+                            <a href="write.aspx">写日记</a></p>
+                        <p>
+                            <a href="manage_diary.aspx">日记管理</a></p>
+                        <p>
+                            <a href="alter_per.aspx">修改资料</a></p>
+                        <p>
+                            <a href="alter_secret.aspx">修改密码</a></p>
+                        <p>
+                            <a href="logout.aspx">
+                                <asp:LinkButton ID="LinkButton1_logout" runat="server" OnCommand="LinkButton1_logout_Command">退出登录</asp:LinkButton></a></p>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <!--main结束-->
+    <div id="bottom">
+        <div class="bq">
+            版权所有 中华人民共和国 豫 ICP2345343号</div>
+    </div>
+    </form>
+    <script type="text/javascript">
+        function test1() {
+            var class1 = document.getElementById('aa');
+            class1.style.position = "absolute";
+            class1.style.left = "-1000px";
+            class1.style.width = "0px";
+            class1.style.height = "0px";
+
+
+            if (class1.innerHTML == '<A href="user.aspx?id="></A>') {
+
+
+                class1 = document.getElementById('getedIn');
+                class1.style.position = "absolute";
+                class1.style.left = "-1000px";
+                class1.style.top = "-1000px";
+                class1.style.height = "40px";
+            }
+            else {
+                class1 = document.getElementById('getIn');
+                class1.style.position = "absolute";
+                class1.style.left = "-1000px";
+                class1.style.width = "0px";
+                class1.style.height = "0px";
+                class1.style.top = "-1000px";
+            }
+        }
+        test1();
+    
+    </script>
+</body>
+</html>

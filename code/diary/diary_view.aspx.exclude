@@ -1,0 +1,181 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="diary_view.aspx.cs" Inherits="diary_view" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <link href="../style/other.css" rel="stylesheet" type="text/css" />
+    <link href="../style/css.css" rel="stylesheet" type="text/css" />
+    <title>日记|大学生考研日记|大学生相互鼓励共同奋斗的平台|双乐科技考研日记|考研日记点滴记录您奋斗过的每一天|共享科技乐享生活</title>
+</head>
+<body>
+    <form runat="server">
+    <div id="header">
+        <div id="top">
+            <span></span>
+            <div class="rtop">
+                <div class="login" id="getIn">
+                    <ul>
+                        <li class="laber">用户名：</li>
+                        <li class="inpu">
+                            <input name="username" type="text" id="username" runat="server" accesskey="l" tabindex="1"
+                                size="12" /></li>
+                        <li class="laber">密码：</li>
+                        <li class="inpu">
+                            <input name="secret" type="password" id="secret" size="12" runat='server' /></li>
+                        <li class="button">
+                            <asp:Button ID="Button1" runat="server" Text="登录" OnClick="Unnamed1_Click" /></li>
+                        <li><a href="../personal/registered.aspx">注册!</a></li>
+                        <li><a href="../personal/getback.aspx">找回？</a></li>
+                    </ul>
+                </div>
+                <div class="login" id="getedIn">
+                    <ul>
+                        <li class="laber">用户名：</li>
+                        <li class="inpu" id="aa"><a href="user.aspx?id=<%= Session["userName"].ToString() %>">
+                            <%= Session["userName"].ToString() %></a> </li>
+                        <li class="inpu"><a href="../personal/user.aspx?id=<%= Session["userName"].ToString() %>">
+                            <%= Session["userName"].ToString() %></a></li>
+                        <li class="inpu"><a href="user.aspx?id=<%= Session["userName"].ToString() %>">个人中心</a></li>
+                        <li>
+                            <asp:LinkButton ID="LinkButton_logout" runat="server" OnCommand="LinkButton_logout_Command">退出</asp:LinkButton></li>
+                    </ul>
+                </div>
+                <div class="word">
+                    <marquee scrollamount="2">这里写的不是一个故事，而是我和某一群人已经失去的时间!</marquee>
+                </div>
+            </div>
+        </div>
+        <div id="nav">
+            <ul>
+                <li><a href="../index.aspx">首页</a><span></span></li>
+                <li><a href="newdiary.aspx">最新日记</a><span></span></li>
+                <li><a href="motdiary.aspx">励志日记</a><span></span></li>
+                <li><a href="feeldiary.aspx">感情日记</a><span></span></li>
+                <li><a href="playup.aspx">奋斗日记</a><span></span></li>
+                <li><a href="../news/sugreading.aspx">推荐阅读</a><span></span></li>
+                <li><a href="../personal/personal.aspx">个人中心</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--头部结束-->
+    <div id="banner">
+    </div>
+    <!--banner结束-->
+    <div class="main">
+        <div class="pmainr">
+            <dl class="rjdl">
+                <dt class="lx">
+                    <ul>
+                        <li><a href="../index.aspx">本站首页>></a></li>
+                        <li><a href="../personal/personal.aspx">个人中心>></a></li>
+                        <li><a href="../personal/manage_diary.aspx">日记管理>></a></li>
+                        <li><a href="../personal/manage_diary_p.aspx">查看日记</a></li>
+                    </ul>
+                </dt>
+            </dl>
+            <dl>
+                <dd class="mage_s_p">
+                    <ul>
+                        <li><a href="../personal/manage_diary_p.aspx">公开日记</a></li>
+                        <li><a href="../personal/manage_diary_s.aspx">私密日记</a></li>
+                        <li><a href="../personal/manage_diary_other.aspx">草稿箱</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="rjdl">
+                <dd>
+                    <table width="599" border="0" class="tablemain">
+                        <tr>
+                            <td width="593">
+                                <p>
+                                    <img src="image/psb.gif" width="31" height="26" />asd
+                                    <input name="textfield" type="text" value="2012日记" />
+                                </p>
+                                <p>
+                                    有时候还真的以为自己是80后，觉得很骄傲，因为我们有的是年轻；可回头看看我们的小一代90后，才慢慢清醒自己，我们不是真的拥有年轻的，庆幸的70后，走在社会主义的前端，成了我们谋取成功的前例，他们出生在70年，成长在80后，却演义着一幕幕的青春偶像剧，而我们真正的80后却还在书山和学海中挣扎，把我们仅有的“正式范儿”的青春却埋葬在求学和应试的坟墓里。当毕业后走到社会上，才发现80后的苦恼与悲哀，不是在学校中就能体会到的。70年的学长，大哥大姐们管我们叫“小X”，而他们却拿着比我们高的待遇和一分良好的工作。而我们尽管有些技能和学历，却在人家的手底下打杂儿，而他们却过着浪漫般的生活，拼命玩着80后的年轻角色，我们却还在为工作，为理想，为生活打拼。真的很希望早生，可以这个机会找上帝他也是没法帮忙的。</p>
+                                <p>
+                                    90后呢，生活条件怎么好，从小就出生在优越的环境里，所以年轻和自由已经是他们争取的权利了，不再向我们一样，从小还的受传统的教育和观念的束缚，他们有的是自由，而我们却在艰苦地过渡着社会的转型和经济水平的趋升，这期间我们要面临的不只是工作压力，更多的是生活方面的因素。面对着飞升的房价，我们不得不考虑是否回到农村老家去生活，或者是住桶子楼，但是那地方是我们把一辈子的幸福初始化的起点，能随便凑合吗？</p>
+                                <p align="right">
+                                    2013-03-19</p>
+                                <label>
+                                    <li><a href="#">删除</a></li>
+                                    <li><a href="rewrite.aspx">编辑</a></li>
+                                    <li><a href="#">隐藏</a></li>
+                                    </ol>
+                                </label>
+                                <p>
+                                    &nbsp;</p>
+                                <p>
+                                    评论：</p>
+                                <p>
+                                    sdf:讨好了</p>
+                                <p>
+                                    为人：不想错哦</p>
+                                <p>
+                                    sd:加油哦<br />
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </dd>
+            </dl>
+        </div>
+        <div class="pmainl">
+            <dl class="rjdl">
+                <dt class="lx"><span>个人中心</span></dt>
+                <dd>
+                    <ul>
+                        <p>
+                            <a href="write.aspx">写日记</a></p>
+                        <p>
+                            <a href="manage_diary.aspx">日记管理</a></p>
+                        <p>
+                            <a href="alter_per.aspx">修改资料</a></p>
+                        <p>
+                            <a href="alter_secret.aspx">修改密码</a></p>
+                        <p>
+                            <a href="logout.aspx">退出登录</a></p>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <!--main结束-->
+    <div id="bottom">
+        <div class="bq">
+            版权所有 中华人民共和国 豫 ICP2345343号</div>
+    </div>
+    </form>
+    <script type="text/javascript">
+        function test1() {
+            var class1 = document.getElementById('aa');
+            class1.style.position = "absolute";
+            class1.style.left = "-1000px";
+            class1.style.width = "0px";
+            class1.style.height = "0px";
+
+
+            if (class1.innerHTML == '<A href="user.aspx?id="></A>') {
+
+
+                class1 = document.getElementById('getedIn');
+                class1.style.position = "absolute";
+                class1.style.left = "-1000px";
+                class1.style.top = "-1000px";
+                class1.style.height = "40px";
+            }
+            else {
+                class1 = document.getElementById('getIn');
+                class1.style.position = "absolute";
+                class1.style.left = "-1000px";
+                class1.style.width = "0px";
+                class1.style.height = "0px";
+                class1.style.top = "-1000px";
+            }
+        }
+        test1();
+    
+    </script>
+</body>
+</html>

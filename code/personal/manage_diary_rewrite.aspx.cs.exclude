@@ -1,0 +1,153 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Data.SqlClient;
+
+public partial class manage_diary_rewrite : System.Web.UI.Page
+{
+    public DataRow ds_diary_rewrite;
+    private static int id = 0;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["userName"] == "")
+        {
+            Response.Write("<script>alert('请登录...');window.location.href='../login.aspx'</script>");
+        }
+        id = int.Parse(Request.QueryString["id"].ToString());
+        ds_diary_rewrite = ShowPage().Rows[0];
+        this.textfield.Text = ds_diary_rewrite["d_title"].ToString();
+    }
+
+    public DataTable ShowPage()
+    {
+        string sql = "select * from diarylisting where d_id=" + id;
+        return SqlHelper.ExecuteDataSetsql(sql).Tables[0];
+    }
+
+    protected void Unnamed1_Click(object sender, EventArgs e)
+    {
+        if (SqlHelper.Login(this.username.Value, this.secret.Value))
+        {
+            Session["userName"] = this.username.Value;
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('登录成功!');</script>");
+        }
+    }
+
+    //清空日记
+    protected void btreset_Click(object sender, EventArgs e)
+    {
+        this.textfield.Text = "";
+        this.textfield2.Value = "";
+        this.select.Value = "励志日记";
+    }
+
+    //公开日记
+    protected void btpublic_Click(object sender, EventArgs e)
+    {
+        string sql = "update diarylisting(u_name,d_type,d_title,d_text,d_time, d_p_or_s, d_draft) values(@name,@dType,@title,@content,@time, @p_or_s,@draft) where d_id=" + id;
+        SqlParameter[] para = new SqlParameter[]{
+            new SqlParameter("@name", SqlDbType.NChar,30),
+            new SqlParameter("@dType",SqlDbType.NChar,30),
+            new SqlParameter("@title",SqlDbType.NChar,50),
+            new SqlParameter("@content",SqlDbType.NText),
+            new SqlParameter("@time",SqlDbType.DateTime),
+            new SqlParameter("@p_or_s",SqlDbType.NChar,10),
+            new SqlParameter("@draft",SqlDbType.NChar,10)
+        };
+        para[0].Value = Session["userName"];
+        para[1].Value = this.select.Value;
+        para[2].Value = textfield.Text;
+        para[3].Value = textfield2.Value;
+        para[4].Value = DateTime.Now;
+        para[5].Value = "p";
+        para[6].Value = "no";
+
+        if (SqlHelper.ExecuteNonQuery(sql, para) > 0)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('公开成功!');</script>");
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('公开失败!');</script>");
+        }
+    }
+
+    //隐藏日记
+    protected void bthide_Click(object sender, EventArgs e)
+    {
+        string sql = "insert into diarylisting(u_name,d_type,d_title,d_text,d_time,d_p_or_s,d_draft) values(@name,@dType,@title,@content,@time,@p_or_s,@draft)";
+        SqlParameter[] para = new SqlParameter[]{
+            new SqlParameter("@name", SqlDbType.NChar,30),
+            new SqlParameter("@dType",SqlDbType.NChar,30),
+            new SqlParameter("@title",SqlDbType.NChar,50),
+            new SqlParameter("@content",SqlDbType.NText),
+            new SqlParameter("@time",SqlDbType.DateTime),
+            new SqlParameter("@p_or_s",SqlDbType.NChar,10),
+            new SqlParameter("@draft",SqlDbType.NChar,10)
+        };
+        para[0].Value = Session["userName"];
+        para[1].Value = this.select.Value;
+        para[2].Value = textfield.Text;
+        para[3].Value = textfield2.Value;
+        para[4].Value = DateTime.Now;
+        para[5].Value = "s";
+        para[6].Value = "yes";
+
+        if (SqlHelper.ExecuteNonQuery(sql, para) > 0)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('隐藏保存成功!');</script>");
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('隐藏保存失败!');</script>");
+        }
+    }
+
+    //保存草稿
+    protected void btSavedraft_Click(object sender, EventArgs e)
+    {
+        string sql = "insert into diarylisting(u_name,d_type,d_title,d_text,d_time,d_draft) values(@name,@dType,@title,@content,@time,@draft)";
+        SqlParameter[] para = new SqlParameter[]{
+            new SqlParameter("@name", SqlDbType.NChar,30),
+            new SqlParameter("@dType",SqlDbType.NChar,30),
+            new SqlParameter("@title",SqlDbType.NChar,50),
+            new SqlParameter("@content",SqlDbType.NText),
+            new SqlParameter("@time",SqlDbType.DateTime),
+            new SqlParameter("@draft",SqlDbType.NChar,10)
+        };
+        para[0].Value = Session["userName"];
+        para[1].Value = this.select.Value;
+        para[2].Value = textfield.Text;
+        para[3].Value = textfield2.Value;
+        para[4].Value = DateTime.Now;
+        para[5].Value = "yes";
+
+        if (SqlHelper.ExecuteNonQuery(sql, para) > 0)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('草稿保存成功!');</script>");
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('草稿保存失败!');</script>");
+        }
+    }
+
+    protected void LinkButton_logout_Command(object sender, CommandEventArgs e)
+    {
+        Session["userName"] = "";
+    }
+    protected void LinkButton1_logout_Command(object sender, CommandEventArgs e)
+    {
+        Session["userName"] = "";
+    }
+}

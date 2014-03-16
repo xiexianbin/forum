@@ -1,0 +1,19 @@
+﻿
+dl, ul, li, ol, dt, dd, a, span{display:block; margin:0px; padding:0px;}
+#header, #banner, .main, #bottom{ margin:0px auto; width:900px; margin:10px 0px 0px 20px; }
+
+#header{ height:25px; height:25px; line-height:25px; color:Gray;}
+.main{ height:400px;}
+#bottom{ height:80px; background-color:Gray; margin-bottom:80px;}
+
+.headerli{ text-align:center; width:auto; overflow:hidden; float:left;}
+.headerspan{ width:40px; overflow:hidden; float:left; text-align:center;}
+.headerlili{ width:auto; float:left; overflow:hidden;}
+
+.main_add{ height:90px; margin:5px; }
+.main_other{ overflow:hidden; }
+.main_ceng{ width:400px; float:left;}
+.main_t{ height:30px; line-height:25px; margin-left:20px; }
+.main_buttom{ width:150px; float:left; text-align:center; overflow:hidden;}
+
+.welcom_bg_imag{ width:800px; height:450px; background-image:url(../images/sl_welcom.jpg);}

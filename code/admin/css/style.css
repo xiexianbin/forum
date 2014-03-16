@@ -1,0 +1,22 @@
+body{ margin:0; padding:0; overflow:hidden; font-size:12px; }
+#top{ margin: 0px auto; height:250px; width:960px; }
+
+#bg{ background-color:Gray; overflow:hidden;}
+#login_main{ width:960px; margin:0px auto;}
+#center_left{ float:left; height:200px; width:500px;}
+#center_middle{	float:left;	height:150px; width:300px; padding-top:50px; }
+#center_right{ float:left; width:160px;}
+
+INPUT{ width:90px; height:20px;	border:solid 1px #153966; font-size:14px; }
+.chknumber_input{ width:52px; }
+
+#center_submit{	float:left;	height:200px; width:100px; }
+.user_button{ line-height:20px; float:left; text-align:center; width:100px; height:20px; }
+
+.user{ margin: 6px 5px; line-height:20px; overflow:hidden; float:left;}
+.user_sec_long{ width:50px; float:left; text-align:right;}
+.user_sec_input_long{ width:120px; float:left; }
+
+#bottom{ width:960px; height:80px; margin-bottom:80px; margin:0px auto; clear:both;  }
+#bottom li{ color:Gray; text-align:center; line-height:20px; list-style-type:none;}
+

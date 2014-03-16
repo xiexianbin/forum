@@ -1,0 +1,42 @@
+﻿body{ font-size:14px; line-height:25px;}
+body li{ list-style-type:none;}
+#header, #banner, .main, #bottom{ width:960px; margin: 0px auto; overflow:hidden;}
+
+a{ font-size:12px;}
+a:link{ font-size:12px; color:#0066FF; text-decoration:none}
+a:visited{ color:#6699CC; text-decoration:none; font-size:12px; }
+a:hover{ color:#FF0000; text-decoration:underline; font-size:12px; }
+
+#top{ background-image:url(../image/header.jpg); height:80px; margin-bottom:10px; }
+#top span{ font-size:24px; color:#0099CC; width:150px; line-height:80px; padding-left:20px; float:left}
+
+#top .rtop{ width:450px; height:80px; float:right; overflow:hidden; margin-right:10px;}
+#top .login{ width:450px; height:40px; margin-top:10px;}
+#top .laber{ width:60px; float:left; text-align:right; font-size:12px;}
+#top .inpu{ width:100px; float:left;}
+#top .button{ width:50px; float:left;}
+#top ul li{ width:45px; float:left; text-align:center; display:inline; }
+#top .word{ color:#FF0000; width:450px; line-height:30px; font-size:14px;}
+
+
+#nav{ height:36px; background:#B5B1F3; }
+#nav ul li{ display:inline}
+#nav ul li a{ width:123px; height:36px; line-height:36px; display:block; float:left; font-size:14px; color:#FFFFFF; text-align:center; }
+#nav ul li a:hover{ background:url(../image/dh.png); font-size:14px; font-weight:bold; text-decoration:none}
+#nav ul li a:visited{ text-decoration:none; font-size:14px;}
+#nav ul li span{ display:block; width:1px; height:14px; background:#FFFFFF; float:left; margin-top:13px;}
+
+#banner{ margin-top:10px;  height:90px; background-image:url(../image/banner.jpg);}
+
+.main{ margin-top:10px; }
+.main ul li{ display:inline;}
+.main .title, .type, .content, .write_diary_button{ margin-top:5px; float:left; overflow:hidden;}
+.main .write_left{ width:50px; text-align:left; overflow:hidden; float:left; }
+.main .title ul{ margin-left:5px;}
+.main .write_right{ float:right; width:900px;}
+.main .write_diary_button ul li{ width:100px; float:left; line-height:40px; height:40px; display:inline;  }
+
+#bottom div{ background:#B5B1F3; color:#999999; height:100px; text-align:center; margin:20px 0px 80px 0px; padding-top:20px;} 
+.bq ul{ margin:0px auto; line-height:25px; height:25px; width:auto; }
+.bq li{ width:auto; float:left;}
+.bq a{ width:auto; float:left; color:#cccccc;}
